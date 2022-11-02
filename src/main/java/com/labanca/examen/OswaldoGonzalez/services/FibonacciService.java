@@ -8,10 +8,9 @@ import java.util.ArrayList;
 @Service
 public interface FibonacciService {
     ArrayList<Fibonacci> getAllFibonacci();
-//    Optional<Fibonacci> getFibonacciById(long id);
     Fibonacci saveFibonacci(Fibonacci f);
     boolean deleteById(long id);
-    boolean deleteAll(Fibonacci f);
+    Long calculoFibonacci(int n);
 
 
 }

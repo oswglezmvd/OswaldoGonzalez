@@ -33,15 +33,45 @@ public class FibonacciServiceImpl implements FibonacciService {
             return false;
         }
     }
-    @Override
-    public boolean deleteAll(Fibonacci f) {
-        try {
-            fibonacciRepository.delete(f);
-            System.out.println(" Elementos eliminados con exito ");
-        } catch (Exception e) {
-            System.out.println(" Elementos no fueron eliminados ");
-            return false;
+
+    public Long calculoFibonacci(int n) {
+        int k = 3;
+        ArrayList<Long> fib1 = new ArrayList<>(500);
+        ArrayList<Integer> estF = new ArrayList<>(500);
+
+        ArrayList<Fibonacci> fibn = getAllFibonacci();
+        if (fibn.size() > 0) {
+            fib1 = fibn.get(0).ListaFibonacci;
+            estF = fibn.get(0).ListaEstadistica;
+            k = (fib1.size());
+            if (n <= fib1.size()) {
+                estF.set(n, (estF.get(n) + 1));
+                fibn.get(0).setListaEstadistica(estF);
+                saveFibonacci(fibn.get(0));
+                return fib1.get(n);
+            }
+        } else {
+            fib1.add(0L);
+            fib1.add(1L);
+            fib1.add(1L);
+            estF.add(0);
+            estF.add(0);
+            estF.add(0);
         }
-        return true;
+
+        for (int i = k; i <= n; i++) {
+            fib1.add((fib1.get((i - 2)) + (fib1.get(i - 1))));
+            estF.add(0);
+        }
+        estF.set(n,(estF.get(n) + 1));
+        if (fibn.size() == 0) {
+            Fibonacci f1 = new Fibonacci(fib1, estF);
+            saveFibonacci(f1);
+        } else {
+            fibn.get(0).setListaFibonacci(fib1);
+            fibn.get(0).setListaEstadistica(estF);
+            saveFibonacci(fibn.get(0));
+        }
+        return fib1.get(n);
     }
 }

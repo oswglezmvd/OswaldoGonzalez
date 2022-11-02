@@ -10,14 +10,14 @@ public class Fibonacci {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     public long Id;
-    public ArrayList<Integer> ListaFibonacci;
+    public ArrayList<Long> ListaFibonacci;
     public ArrayList<Integer> ListaEstadistica;
 
 
     public Fibonacci() {
     }
 
-    public Fibonacci(ArrayList<Integer> listaFibonacci, ArrayList<Integer> listaEstadistica) {
+    public Fibonacci(ArrayList<Long> listaFibonacci, ArrayList<Integer> listaEstadistica) {
         ListaFibonacci = listaFibonacci;
         ListaEstadistica = listaEstadistica;
     }
@@ -27,11 +27,11 @@ public class Fibonacci {
     }
 
 
-    public ArrayList<Integer> getListaFibonacci() {
+    public ArrayList<Long> getListaFibonacci() {
         return ListaFibonacci;
     }
 
-    public void setListaFibonacci(ArrayList<Integer> listaFibonacci) {
+    public void setListaFibonacci(ArrayList<Long> listaFibonacci) {
         ListaFibonacci = listaFibonacci;
     }
 
